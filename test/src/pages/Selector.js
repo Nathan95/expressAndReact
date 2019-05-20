@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import data from './data';
+import styled from 'styled-components';
 
 const Row = ({id, country_name}) => (
   <option key={id} value={country_name}>{country_name}</option>
@@ -17,15 +18,19 @@ class Selector extends Component {
         <div className="App">
           <h3>Shipping Country</h3>
           <div className="country-container">
-            {this.state.data.map(user =>
-              <ul key={user.id}>
-                  <li>
-                    <a href="https://www.endclothing.com/">
-                      <span>{user.country_name}</span>
-                    </a>
-                  </li>
-                </ul>
-            )}
+          {Object.keys(data)
+            .filter(key => data[key].is_main === 1)
+            .map((key, index) => {
+              return (
+              <ul key={data.id}>
+                <li>
+                  <a href="https://www.endclothing.com/">
+                  {data[key].country_name}
+                  </a>
+                 </li>
+               </ul>
+              );
+            })}
           </div>
           <select name="countries" className="selectBox">
           <option selected="selected">All Countries</option>
